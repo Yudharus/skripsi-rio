@@ -1,0 +1,47 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container mt-4">
+    <h2>Data Perhitungan menggunakan EOQ dan ROP</h2>
+    <div class="table-responsive table-striped">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nama Obat</th>
+                    <!-- <th>Satuan Obat</th> -->
+                    <th>Harga Obat</th>
+                    <th>Stok</th>
+                    <th>Jumlah Masuk</th>
+                    <th>Biaya Pemesanan</th>
+                    <th>Total Biaya Penyimpanan</th>
+                    <th>Tanggal</th>
+                    <th>EOQ</th>
+                    <th>ROP</th>
+                </tr>
+            </thead>
+            <tbody id="dataObat">
+                @foreach ($data as $item)
+                    <tr>
+                        <td>{{ $item['nama_obat'] }}</td>
+                        <!-- <td>{{ $item['satuan_obat'] }}</td> -->
+                        <td>{{ $item['harga_obat'] }}</td>
+                        <td>{{ $item['stok'] }}</td>
+                        <td>{{ $item['jumlah_masuk'] }}</td>
+                        <td>{{ $item['biaya_pemesanan'] }}</td>
+                        <td>{{ $item['total_biaya_penyimpanan'] }}</td>
+                        <td>{{ $item['tanggal'] }}</td>
+                        <td>{{ $item['eoq'] }}</td>
+                        <td>{{ $item['rop'] }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+@endsection

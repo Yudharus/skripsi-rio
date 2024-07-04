@@ -39,6 +39,11 @@ Route::post('/obat_keluar', [App\Http\Controllers\ObatKeluarController::class, '
 Route::delete('/obat_keluar/{id}', [App\Http\Controllers\ObatKeluarController::class, 'destroy'])->name('obat_keluar.destroy');
 Route::put('/obat_keluar/{id}', [App\Http\Controllers\ObatKeluarController::class, 'update'])->name('obat_keluar.update');
 
+Route::get('/supplier', [App\Http\Controllers\SupplierController::class, 'index'])->name('supplier');
+Route::post('/supplier', [App\Http\Controllers\SupplierController::class, 'store'])->name('supplier.store');
+Route::delete('/supplier/{id}', [App\Http\Controllers\SupplierController::class, 'destroy'])->name('supplier.destroy');
+Route::put('/supplier/{id}', [App\Http\Controllers\SupplierController::class, 'update'])->name('supplier.update');
+
 Route::get('/ropeoq', [App\Http\Controllers\RopEoqController::class, 'index'])->name('ropeoq');
 
 

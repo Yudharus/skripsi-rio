@@ -6,6 +6,9 @@
     <a href="{{ route('user') }}" >
         <p>User</p>
     </a>
+    <a href="{{ route('supplier') }}" >
+        <p>Supplier</p>
+    </a>
     <a href="{{ route('obat') }}" >
         <p>Obat</p>
     </a>
@@ -16,13 +19,10 @@
         <p>Obat Keluar</p>
     </a>
     <a href="{{ route('ropeoq') }}" >
-        <p>ROP dan EOQ</p>
+        <p>Pengadaan Obat</p>
     </a>
-    <a href="#"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Log out
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Log out</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+        </form>
 </li>

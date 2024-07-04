@@ -4,24 +4,42 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Obat;
+use App\Models\Supplier;
+
 
 class ObatController extends Controller
 {
     public function index() {
         $obats = Obat::all();
-        return view('obat', compact('obats'));
+        $suppliers = Supplier::all();
+
+        return view('obat', compact('obats', 'suppliers'));
     }
 
     public function store(Request $request) {
         $request->validate([
             'nama_obat' => 'required|string|max:255',
             'satuan_obat' => 'required|string|max:255',
-            'harga_obat' => 'required|integer',
-            'stok' => 'required|integer',
+            'harga_obat' => 'required|numeric',
+            'stok' => 'required|numeric',
+            'id_supplier' => 'required|integer',
         ]);
 
-        Obat::create($request->all());
+        $supplier = Supplier::find($request->id_supplier);
 
+        if (!$supplier) {
+            return redirect()->route('obat')->with('error', 'Supplier not found.');
+        }
+
+        Obat::create([
+            'nama_obat' => $request->nama_obat,
+            'satuan_obat' => $request->satuan_obat,
+            'harga_obat' => $request->harga_obat,
+            'stok' => $request->stok,
+            'id_supplier' => $supplier->id_supplier,
+            'supplier' => $supplier->nama_supplier,
+        ]);
+        
         return redirect()->route('obat')->with('success', 'Obat added successfully.');
     }
 
@@ -40,14 +58,29 @@ class ObatController extends Controller
         $request->validate([
             'nama_obat' => 'required|string|max:255',
             'satuan_obat' => 'required|string|max:255',
-            'harga_obat' => 'required|integer',
-            'stok' => 'required|integer',
+            'harga_obat' => 'required|numeric',
+            'stok' => 'required|numeric',
+            'id_supplier' => 'required|integer',
         ]);
     
         $obat = Obat::find($id);
     
         if ($obat) {
-            $obat->update($request->all());
+            $supplier = Supplier::find($request->id_supplier);
+    
+            if (!$supplier) {
+                return redirect()->route('obat')->with('error', 'Supplier not found.');
+            }
+    
+            $obat->update([
+                'nama_obat' => $request->nama_obat,
+                'satuan_obat' => $request->satuan_obat,
+                'harga_obat' => $request->harga_obat,
+                'stok' => $request->stok,
+                'id_supplier' => $supplier->id_supplier,
+                'supplier' => $supplier->nama_supplier,
+            ]);
+    
             return redirect()->route('obat')->with('success', 'Obat updated successfully.');
         }
     

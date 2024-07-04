@@ -13,6 +13,7 @@
                         <th>Satuan Obat</th>
                         <th>Harga Obat</th>
                         <th>Stok</th>
+                        <th>Supplier</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -24,6 +25,7 @@
                             <td>{{ $obat->satuan_obat }}</td>
                             <td>{{ $obat->harga_obat }}</td>
                             <td>{{ $obat->stok }}</td>
+                            <td>{{ $obat->supplier }}</td>
                             <td>
                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editObatModal{{ $obat->id_obat }}">Edit</button>
                                 <form action="{{ route('obat.destroy', $obat->id_obat) }}" method="POST" style="display:inline-block;">
@@ -48,6 +50,14 @@
                                         <form id="formEditObat{{ $obat->id_obat }}" method="POST" action="{{ route('obat.update', $obat->id_obat) }}">
                                             @csrf
                                             @method('PUT')
+                                            <div class="form-group">
+                                            <label for="idSupplier{{ $obat->id_obat }}">Supplier</label>
+                                            <select class="form-control" id="idSupplier{{ $obat->id_obat }}" name="id_supplier" required>
+                                                @foreach ($suppliers as $supplier)
+                                                    <option value="{{ $supplier->id_supplier }}" {{ $supplier->id_supplier == $obat->id_supplier ? 'selected' : '' }}>{{ $supplier->nama_supplier }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                             <div class="form-group">
                                                 <label for="namaObat{{ $obat->id_obat }}">Nama Obat</label>
                                                 <input type="text" class="form-control" id="namaObat{{ $obat->id_obat }}" name="nama_obat" value="{{ $obat->nama_obat }}" required>
@@ -89,6 +99,14 @@
                 <div class="modal-body">
                     <form id="formTambahObat" method="POST" action="{{ route('obat.store') }}">
                         @csrf
+                        <div class="form-group">
+                            <label for="idSupplier">Supplier</label>
+                            <select class="form-control" id="idSupplier" name="id_supplier" required>
+                                @foreach ($suppliers as $supplier)
+                                    <option value="{{ $supplier->id_supplier }}">{{ $supplier->nama_supplier }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="namaObat">Nama Obat</label>
                             <input type="text" class="form-control" id="namaObat" name="nama_obat" required>

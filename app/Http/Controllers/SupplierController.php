@@ -16,6 +16,8 @@ class SupplierController extends Controller
     public function store(Request $request) {
         $request->validate([
             'nama_supplier' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'telepon' => 'required|string|max:255',
         ]);
 
         Supplier::create($request->all());
@@ -37,6 +39,8 @@ class SupplierController extends Controller
     public function update(Request $request, $id) {
         $request->validate([
             'nama_supplier' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'telepon' => 'required|string|max:255',
         ]);
     
         $supplier = Supplier::find($id);

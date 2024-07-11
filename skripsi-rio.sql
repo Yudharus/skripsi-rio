@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2024 at 10:48 AM
+-- Generation Time: Jul 11, 2024 at 02:59 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.1
 
@@ -70,15 +70,17 @@ CREATE TABLE `obat` (
   `nama_obat` varchar(255) NOT NULL,
   `satuan_obat` varchar(50) DEFAULT NULL,
   `harga_obat` int(11) DEFAULT NULL,
-  `stok` int(11) DEFAULT NULL
+  `stok` int(11) DEFAULT NULL,
+  `id_supplier` int(11) NOT NULL,
+  `supplier` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `obat`
 --
 
-INSERT INTO `obat` (`id_obat`, `nama_obat`, `satuan_obat`, `harga_obat`, `stok`) VALUES
-(13, 'ADROME 10 x 10', 'BOX', 51081, 5);
+INSERT INTO `obat` (`id_obat`, `nama_obat`, `satuan_obat`, `harga_obat`, `stok`, `id_supplier`, `supplier`) VALUES
+(26, 'ADROME 10 x 10', 'BOX', 51081, 0, 2, 'PERDANA');
 
 -- --------------------------------------------------------
 
@@ -109,13 +111,6 @@ CREATE TABLE `obat_masuk` (
   `biaya_pemesanan` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `obat_masuk`
---
-
-INSERT INTO `obat_masuk` (`id_obat_masuk`, `id_obat`, `nama_obat`, `jumlah_masuk`, `tanggal`, `biaya_pemesanan`) VALUES
-(18, 13, 'ADROME 10 x 10', 4, '2024-06-18', 8000);
-
 -- --------------------------------------------------------
 
 --
@@ -127,6 +122,13 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('rio@email.com', '$2y$10$CXRemKVYv4iamO6iB9LAkO51.gQ4OA9D.FC6l623oyG3l3e1P9lY2', '2024-07-01 01:29:09');
 
 -- --------------------------------------------------------
 
@@ -163,6 +165,26 @@ CREATE TABLE `rop_eoq` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `suplier`
+--
+
+CREATE TABLE `suplier` (
+  `id_supplier` int(11) NOT NULL,
+  `nama_supplier` varchar(255) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
+  `telepon` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `suplier`
+--
+
+INSERT INTO `suplier` (`id_supplier`, `nama_supplier`, `alamat`, `telepon`) VALUES
+(2, 'PERDANA', 'JL. ABC No.3', '081234567789');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -184,7 +206,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `bagian`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'rio franata', 'rio', 'rio@email.com', 'Direktur Klinik', NULL, '$2y$10$NDhlntwIU1oFlkzaIIZfvurCTTNsoX4W13n/22UnmUZeAoU66p0Se', NULL, '2024-06-29 11:33:05', '2024-06-29 11:33:05');
+(1, 'rio franata', 'rio', 'rio@email.com', 'Apoteker', NULL, '$2y$10$NDhlntwIU1oFlkzaIIZfvurCTTNsoX4W13n/22UnmUZeAoU66p0Se', NULL, '2024-06-29 11:33:05', '2024-07-11 04:46:08'),
+(24, 'admin', 'admin', 'admin@email.com', 'Administrator', NULL, '$2y$10$2XAYWTP89E2.6ROYSEI2EOwp7JHrpyeSrFyyAoNr9eYWBYPHq8sXS', NULL, '2024-07-11 05:46:32', '2024-07-11 05:46:32');
 
 --
 -- Indexes for dumped tables
@@ -245,6 +268,12 @@ ALTER TABLE `rop_eoq`
   ADD KEY `id_obat` (`id_obat`);
 
 --
+-- Indexes for table `suplier`
+--
+ALTER TABLE `suplier`
+  ADD PRIMARY KEY (`id_supplier`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -271,19 +300,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `obat_keluar`
 --
 ALTER TABLE `obat_keluar`
-  MODIFY `id_obat_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_obat_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `obat_masuk`
 --
 ALTER TABLE `obat_masuk`
-  MODIFY `id_obat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_obat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -298,10 +327,16 @@ ALTER TABLE `rop_eoq`
   MODIFY `id_rop_eoq` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `suplier`
+--
+ALTER TABLE `suplier`
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables

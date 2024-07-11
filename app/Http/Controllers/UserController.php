@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class UserController extends Controller
 {
+
     public function index() {
         $users = User::all();
         return view('user', compact('users'));
@@ -21,7 +24,13 @@ class UserController extends Controller
             'password' => 'required|string|max:255',
         ]);
 
-        User::create($request->all());
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'bagian' => $request->bagian,
+            'password' => Hash::make($request->password),
+        ]);
 
         return redirect()->route('user')->with('success', 'User added successfully.');
     }

@@ -63,7 +63,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
-                        <a href="{{ route('password.request') }}">Lupa Password</a>
+                        <!-- <a href="{{ route('password.request') }}">Lupa Password</a> -->
 
                             <!-- <input type="checkbox" id="remember">
                             <label for="remember">Remember Me</label> -->
@@ -81,7 +81,7 @@
                 <a href="{{ route('password.request') }}">I forgot my password</a>
             </p> -->
             <!-- <p class="mb-0">
-                <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+                <a href="{{ route('register') }}" class="text-center">Buat akun baru</a>
             </p> -->
         </div>
         <!-- /.login-card-body -->

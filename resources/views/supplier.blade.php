@@ -10,6 +10,8 @@
                     <tr>
                         <!-- <th>ID Obat</th> -->
                         <th>Nama Supplier</th>
+                        <th>Alamat</th>
+                        <th>Telepon</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -17,6 +19,8 @@
                     @foreach ($suppliers as $supplier)
                         <tr>
                             <td>{{ $supplier->nama_supplier }}</td>
+                            <td>{{ $supplier->alamat }}</td>
+                            <td>{{ $supplier->telepon }}</td>
                             <td>
                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editSupplierModal{{ $supplier->id_supplier }}">Edit</button>
                                 <form action="{{ route('supplier.destroy', $supplier->id_supplier) }}" method="POST" style="display:inline-block;">
@@ -44,6 +48,14 @@
                                             <div class="form-group">
                                                 <label for="namaSupplier{{ $supplier->id_supplier }}">Nama supplier</label>
                                                 <input type="text" class="form-control" id="namaSupplier{{ $supplier->id_supplier }}" name="nama_supplier" value="{{ $supplier->nama_supplier }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="alamatSupplier{{ $supplier->id_supplier }}">Alamat supplier</label>
+                                                <input type="text" class="form-control" id="alamatSupplier{{ $supplier->id_supplier }}" name="alamat" value="{{ $supplier->alamat }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="teleponSupplier{{ $supplier->id_supplier }}">Telepon supplier</label>
+                                                <input type="text" class="form-control" id="teleponSupplier{{ $supplier->id_supplier }}" name="telepon" value="{{ $supplier->telepon }}" required>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Simpan</button>
                                         </form>
@@ -73,6 +85,14 @@
                         <div class="form-group">
                             <label for="namaSupplier">Nama Supplier</label>
                             <input type="text" class="form-control" id="namaSupplier" name="nama_supplier" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="alamatSupplier">Alamat Supplier</label>
+                            <input type="text" class="form-control" id="alamatSupplier" name="alamat" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="teleponSupplier">Telepon Supplier</label>
+                            <input type="text" class="form-control" id="teleponSupplier" name="telepon" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Tambah</button>
                     </form>

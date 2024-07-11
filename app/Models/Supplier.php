@@ -11,7 +11,7 @@ class Supplier extends Model
 
     protected $table = 'suplier'; // Nama tabel yang digunakan
 
-    protected $fillable = ['nama_supplier'];
+    protected $fillable = ['nama_supplier', 'alamat', 'telepon'];
 
     protected $primaryKey = 'id_supplier'; // Nama primary key yang digunakan
 

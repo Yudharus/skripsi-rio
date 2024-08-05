@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2024 at 02:59 PM
+-- Generation Time: Aug 05, 2024 at 11:04 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.1
 
@@ -72,15 +72,16 @@ CREATE TABLE `obat` (
   `harga_obat` int(11) DEFAULT NULL,
   `stok` int(11) DEFAULT NULL,
   `id_supplier` int(11) NOT NULL,
-  `supplier` varchar(255) DEFAULT NULL
+  `supplier` varchar(255) DEFAULT NULL,
+  `history` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `obat`
 --
 
-INSERT INTO `obat` (`id_obat`, `nama_obat`, `satuan_obat`, `harga_obat`, `stok`, `id_supplier`, `supplier`) VALUES
-(26, 'ADROME 10 x 10', 'BOX', 51081, 0, 2, 'PERDANA');
+INSERT INTO `obat` (`id_obat`, `nama_obat`, `satuan_obat`, `harga_obat`, `stok`, `id_supplier`, `supplier`, `history`) VALUES
+(30, 'as', 'box', 80000, 37, 2, 'PERDANA', NULL);
 
 -- --------------------------------------------------------
 
@@ -96,6 +97,14 @@ CREATE TABLE `obat_keluar` (
   `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `obat_keluar`
+--
+
+INSERT INTO `obat_keluar` (`id_obat_keluar`, `id_obat`, `nama_obat`, `jumlah_keluar`, `tanggal`) VALUES
+(11, 30, 'as', 10, '2024-08-06'),
+(12, 30, 'as', 3, '2024-08-06');
+
 -- --------------------------------------------------------
 
 --
@@ -110,6 +119,14 @@ CREATE TABLE `obat_masuk` (
   `tanggal` date DEFAULT NULL,
   `biaya_pemesanan` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `obat_masuk`
+--
+
+INSERT INTO `obat_masuk` (`id_obat_masuk`, `id_obat`, `nama_obat`, `jumlah_masuk`, `tanggal`, `biaya_pemesanan`) VALUES
+(30, 30, 'as', 20, '2024-08-05', 8000),
+(31, 30, 'as', 30, '2024-08-05', 8000);
 
 -- --------------------------------------------------------
 
@@ -207,7 +224,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `bagian`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'rio franata', 'rio', 'rio@email.com', 'Apoteker', NULL, '$2y$10$NDhlntwIU1oFlkzaIIZfvurCTTNsoX4W13n/22UnmUZeAoU66p0Se', NULL, '2024-06-29 11:33:05', '2024-07-11 04:46:08'),
-(24, 'admin', 'admin', 'admin@email.com', 'Administrator', NULL, '$2y$10$2XAYWTP89E2.6ROYSEI2EOwp7JHrpyeSrFyyAoNr9eYWBYPHq8sXS', NULL, '2024-07-11 05:46:32', '2024-07-11 05:46:32');
+(24, 'admin', 'admin', 'admin@email.com', 'Administrator', NULL, '$2y$10$2XAYWTP89E2.6ROYSEI2EOwp7JHrpyeSrFyyAoNr9eYWBYPHq8sXS', NULL, '2024-07-11 05:46:32', '2024-07-11 05:46:32'),
+(28, 'test yudha', 'testyudha', 'testyudha@email.com', 'Apoteker', NULL, '$2y$10$bICBAei8Q/gphZW37hwNfu7z0DLuKRgqqLz00xlNFUv9rHK1OqQCa', NULL, '2024-07-31 07:13:09', '2024-07-31 07:14:43');
 
 --
 -- Indexes for dumped tables
@@ -300,19 +318,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `obat_keluar`
 --
 ALTER TABLE `obat_keluar`
-  MODIFY `id_obat_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_obat_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `obat_masuk`
 --
 ALTER TABLE `obat_masuk`
-  MODIFY `id_obat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_obat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -336,7 +354,7 @@ ALTER TABLE `suplier`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables

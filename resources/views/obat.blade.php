@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container mt-4">
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
         <h2>Data Obat</h2>
         <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahObatModal">Tambah Obat</button>
         <div class="table-responsive table-striped">
@@ -12,10 +20,10 @@
                         <th>Tanggal</th>
                         <th>Nama Obat</th>
                         <th>Satuan Obat</th>
-                        <!-- <th>Harga Obat</th> -->
-                        <th>Stok Awal</th>
-                        <th>Jumlah Jual</th>
+                        <th>Harga Obat</th>
                         <th>Supplier</th>
+                        <th>Stok Awal</th>
+                        <!-- <th>Jumlah Jual</th> -->
                         <th>Stok Akhir</th>
                         <th>Aksi</th>
                     </tr>
@@ -27,10 +35,10 @@
                             <td>{{ $obat->history }}</td>
                             <td>{{ $obat->nama_obat }}</td>
                             <td>{{ $obat->satuan_obat }}</td>
-                            <!-- <td>{{ $obat->harga_obat }}</td> -->
-                            <td>{{ $obat->stok }}</td>
-                            <td>{{ $obat->jumlah_keluar }}</td>
+                            <td>{{ $obat->harga_obat }}</td>
                             <td>{{ $obat->supplier }}</td>
+                            <td>{{ $obat->stok }}</td>
+                            <!-- <td>{{ $obat->jumlah_keluar }}</td> -->
                             <td>{{ $obat->stok }}</td>
                             <td>
                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editObatModal{{ $obat->id_obat }}">Edit</button>
@@ -128,6 +136,10 @@
                         <div class="form-group">
                             <label for="stokObat">Stok</label>
                             <input type="number" class="form-control" id="stokObat" name="stok" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="history">Tanggal</label>
+                            <input type="date" class="form-control" id="history" name="history" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Tambah</button>
                     </form>

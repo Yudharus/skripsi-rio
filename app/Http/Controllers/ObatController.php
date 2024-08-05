@@ -11,10 +11,12 @@ use App\Models\Supplier;
 class ObatController extends Controller
 {
     public function index() {
-        $obats = Obat::leftJoin('obat_keluar', 'obat.id_obat', '=', 'obat_keluar.id_obat')
-        ->select('obat.*', 'obat_keluar.jumlah_keluar')
-        ->get();
+        // $obats = Obat::join('obat_keluar', 'obat.id_obat', '=', 'obat_keluar.id_obat')
+        // ->select('obat.*', 'obat_keluar.jumlah_keluar')
+        // ->get();
         $suppliers = Supplier::all();
+
+        $obats = Obat::all();
 
         return view('obat', compact('obats', 'suppliers'));
     }
@@ -41,6 +43,8 @@ class ObatController extends Controller
             'stok' => $request->stok,
             'id_supplier' => $supplier->id_supplier,
             'supplier' => $supplier->nama_supplier,
+            'history' => $request->history,
+
         ]);
         
         return redirect()->route('obat')->with('success', 'Obat added successfully.');

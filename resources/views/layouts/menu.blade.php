@@ -2,7 +2,7 @@
 <li class="nav-item">
     @if(Auth::user()->bagian == 'Apoteker')
         <a href="{{ route('home') }}" >
-            <p>Dashboard</p>
+            <p>Klinik</p>
         </a>
         <a href="{{ route('user') }}" >
             <p>User</p>

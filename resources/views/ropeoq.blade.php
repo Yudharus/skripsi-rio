@@ -16,8 +16,8 @@
                     <!-- <th>Total Biaya Penyimpanan</th> -->
                     <th>Tanggal</th>
                     <th>Stok Akhir</th>
-                    <th>EOQ</th>
-                    <th>ROP</th>
+                    <th>Jumlah Beli</th>
+                    <th>Titik Pesan</th>
                     <th>Penjualan Rata - Rata</th>
                     <th>Penjualan Maksimal</th>
                     <th>Lead Time</th>

@@ -49,7 +49,8 @@ class ObatKeluarController extends Controller
 
         $obat->stok -= $request->jumlah_keluar;
         $obat->save();
-        
+
+        session()->flash('success', 'Data obat keluar berhasil ditambahkan.');
         return redirect()->route('obat_keluar')->with('success', 'Obat keluar added successfully.');
     }
 

@@ -2,7 +2,10 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2>Data Perhitungan menggunakan EOQ dan ROP</h2>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Data Perhitungan menggunakan EOQ dan ROP</h2>
+        <span>{{ date('d-m-Y') }}</span>
+    </div>
     <div class="table-responsive table-striped">
         <table class="table table-bordered">
             <thead class="thead-dark">

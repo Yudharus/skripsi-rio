@@ -11,6 +11,7 @@
                     <th>Nama Obat</th>
                     <th>Jumlah Keluar</th>
                     <th>Tanggal</th>
+                    <th>Rata - Rata</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -20,6 +21,7 @@
                     <td>{{ $obat_keluar->nama_obat }}</td>
                     <td>{{ $obat_keluar->jumlah_keluar }}</td>
                     <td>{{ $obat_keluar->tanggal }}</td> <!-- Pastikan mengakses kolom tanggal dengan nama yang sesuai -->
+                    <td>{{ number_format($obat_keluar->average_sales, 2) }}</td>
                     <td>
                         <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editObatKeluarModal{{ $obat_keluar->id_obat_keluar }}">Edit</button>
                         <form action="{{ route('obat_keluar.destroy', $obat_keluar->id_obat_keluar) }}" method="POST" style="display:inline-block;">

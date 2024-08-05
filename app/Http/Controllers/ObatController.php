@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Obat;
+use App\Models\ObatKeluar;
 use App\Models\Supplier;
 
 
 class ObatController extends Controller
 {
     public function index() {
-        $obats = Obat::all();
+        $obats = Obat::leftJoin('obat_keluar', 'obat.id_obat', '=', 'obat_keluar.id_obat')
+        ->select('obat.*', 'obat_keluar.jumlah_keluar')
+        ->get();
         $suppliers = Supplier::all();
 
         return view('obat', compact('obats', 'suppliers'));

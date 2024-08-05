@@ -63,8 +63,13 @@ class RopEoqController extends Controller
                     'biaya_pemesanan' => $biaya_pemesanan,
                     'total_biaya_penyimpanan' => $total_biaya_penyimpanan,
                     'tanggal' => $tanggal,
+                    'safety_stock' => $safetyStock,
                     'eoq' => $eoq,
-                    'rop' => $rop
+                    'rop' => $rop,
+                    'penjualan_maksimal' => $maxPenjualan,
+                    'rata_rata' => $avgPenjualan,
+                    'stock_akhir' => $obat->stok
+
                 ];
             }
         }

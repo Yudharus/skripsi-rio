@@ -9,11 +9,14 @@
                 <thead class="thead-dark">
                     <tr>
                         <!-- <th>ID Obat</th> -->
+                        <th>Tanggal</th>
                         <th>Nama Obat</th>
                         <th>Satuan Obat</th>
-                        <th>Harga Obat</th>
-                        <th>Stok</th>
+                        <!-- <th>Harga Obat</th> -->
+                        <th>Stok Awal</th>
+                        <th>Jumlah Jual</th>
                         <th>Supplier</th>
+                        <th>Stok Akhir</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -21,11 +24,14 @@
                     @foreach ($obats as $obat)
                         <tr>
                             <!-- <td>{{ $obat->id_obat }}</td> -->
+                            <td>{{ $obat->history }}</td>
                             <td>{{ $obat->nama_obat }}</td>
                             <td>{{ $obat->satuan_obat }}</td>
-                            <td>{{ $obat->harga_obat }}</td>
+                            <!-- <td>{{ $obat->harga_obat }}</td> -->
                             <td>{{ $obat->stok }}</td>
+                            <td>{{ $obat->jumlah_keluar }}</td>
                             <td>{{ $obat->supplier }}</td>
+                            <td>{{ $obat->stok }}</td>
                             <td>
                                 <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editObatModal{{ $obat->id_obat }}">Edit</button>
                                 <form action="{{ route('obat.destroy', $obat->id_obat) }}" method="POST" style="display:inline-block;">

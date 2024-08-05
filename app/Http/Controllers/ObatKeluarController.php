@@ -12,6 +12,16 @@ class ObatKeluarController extends Controller
         $obat_keluars = ObatKeluar::all(); // Fetch all obat_masuk records
         $obats = Obat::all(); // Fetch all obat records if needed
         // return view('obat_masuk', compact('obat_masuks'));
+        $averageSales = ObatKeluar::select('id_obat', \DB::raw('AVG(jumlah_keluar) as avg_penjualan'))
+        ->groupBy('id_obat')
+        ->get()
+        ->keyBy('id_obat'); // Index by id_obat for easy access
+
+    // Gabungkan rata-rata penjualan ke dalam setiap item obat_keluars
+    $obat_keluars->map(function ($obat_keluar) use ($averageSales) {
+        $obat_keluar->average_sales = $averageSales->get($obat_keluar->id_obat)->avg_penjualan ?? 0;
+        return $obat_keluar;
+    });
         return view('obat_keluar', compact('obat_keluars', 'obats'));
 
     }

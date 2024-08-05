@@ -10,13 +10,18 @@
                     <th>Nama Obat</th>
                     <!-- <th>Satuan Obat</th> -->
                     <th>Harga Obat</th>
-                    <th>Stok</th>
-                    <th>Jumlah Masuk</th>
-                    <th>Biaya Pemesanan</th>
-                    <th>Total Biaya Penyimpanan</th>
+                    <!-- <th>Stok</th> -->
+                    <!-- <th>Jumlah Masuk</th> -->
+                    <!-- <th>Biaya Pemesanan</th> -->
+                    <!-- <th>Total Biaya Penyimpanan</th> -->
                     <th>Tanggal</th>
+                    <th>Stok Akhir</th>
                     <th>EOQ</th>
                     <th>ROP</th>
+                    <th>Penjualan Rata - Rata</th>
+                    <th>Penjualan Maksimal</th>
+                    <th>Lead Time</th>
+                    <th>Safety Stock</th>
                 </tr>
             </thead>
             <tbody id="dataObat">
@@ -25,13 +30,18 @@
                         <td>{{ $item['nama_obat'] }}</td>
                         <!-- <td>{{ $item['satuan_obat'] }}</td> -->
                         <td>{{ $item['harga_obat'] }}</td>
-                        <td>{{ $item['stok'] }}</td>
-                        <td>{{ $item['jumlah_masuk'] }}</td>
-                        <td>{{ $item['biaya_pemesanan'] }}</td>
-                        <td>{{ $item['total_biaya_penyimpanan'] }}</td>
+                        <!-- <td>{{ $item['stok'] }}</td> -->
+                        <!-- <td>{{ $item['jumlah_masuk'] }}</td> -->
+                        <!-- <td>{{ $item['biaya_pemesanan'] }}</td> -->
+                        <!-- <td>{{ $item['total_biaya_penyimpanan'] }}</td> -->
                         <td>{{ $item['tanggal'] }}</td>
+                        <td>{{ $item['stock_akhir'] }}</td>
                         <td>{{ $item['eoq'] }}</td>
                         <td>{{ $item['rop'] }}</td>
+                        <td>{{ $item['rata_rata'] }}</td>
+                        <td>{{ $item['penjualan_maksimal'] }}</td>
+                        <td>1</td>
+                        <td>{{ $item['safety_stock'] }}</td>
                     </tr>
                 @endforeach
             </tbody>

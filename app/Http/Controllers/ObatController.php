@@ -21,6 +21,17 @@ class ObatController extends Controller
         return view('obat', compact('obats', 'suppliers'));
     }
 
+    public function indexStok() {
+        // $obats = Obat::join('obat_keluar', 'obat.id_obat', '=', 'obat_keluar.id_obat')
+        // ->select('obat.*', 'obat_keluar.jumlah_keluar')
+        // ->get();
+        $suppliers = Supplier::all();
+
+        $obats = Obat::all();
+
+        return view('stok_obat', compact('obats', 'suppliers'));
+    }
+
     public function store(Request $request) {
         $request->validate([
             'nama_obat' => 'required|string|max:255',

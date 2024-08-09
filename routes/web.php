@@ -25,6 +25,13 @@ Route::post('/obat', [App\Http\Controllers\ObatController::class, 'store'])->nam
 Route::delete('/obat/{id}', [App\Http\Controllers\ObatController::class, 'destroy'])->name('obat.destroy');
 Route::put('/obat/{id}', [App\Http\Controllers\ObatController::class, 'update'])->name('obat.update');
 
+Route::get('/stok_obat', [App\Http\Controllers\ObatController::class, 'indexStok'])->name('stok_obat');
+Route::post('/stok_obat', [App\Http\Controllers\ObatController::class, 'store'])->name('stok_obat.store');
+Route::delete('/stok_obat/{id}', [App\Http\Controllers\ObatController::class, 'destroy'])->name('stok_obat.destroy');
+Route::put('/stok_obat/{id}', [App\Http\Controllers\ObatController::class, 'update'])->name('stok_obat.update');
+
+
+
 Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
 Route::post('/user', [App\Http\Controllers\UserController::class, 'store'])->name('user.store');
 Route::delete('/user/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');

@@ -11,7 +11,7 @@ class Obat extends Model
 
     protected $table = 'obat'; // Nama tabel yang digunakan
 
-    protected $fillable = ['nama_obat', 'satuan_obat', 'harga_obat', 'stok', 'id_supplier','supplier', 'history'];
+    protected $fillable = ['nama_obat', 'satuan_obat', 'harga_obat', 'stok', 'stok_akhir', 'id_supplier','supplier', 'history'];
 
     protected $primaryKey = 'id_obat'; // Nama primary key yang digunakan
 

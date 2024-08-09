@@ -8,7 +8,10 @@
             <p>User</p>
         </a>
         <a href="{{ route('obat') }}" >
-            <p>Obat</p>
+            <p>Daftar Obat</p>
+        </a>
+        <a href="{{ route('stok_obat') }}" >
+            <p>Stok Obat</p>
         </a>
         <a href="{{ route('supplier') }}" >
             <p>Supplier</p>

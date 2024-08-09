@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2024 at 11:04 AM
+-- Generation Time: Aug 09, 2024 at 04:48 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.1
 
@@ -71,6 +71,7 @@ CREATE TABLE `obat` (
   `satuan_obat` varchar(50) DEFAULT NULL,
   `harga_obat` int(11) DEFAULT NULL,
   `stok` int(11) DEFAULT NULL,
+  `stok_akhir` int(11) DEFAULT NULL,
   `id_supplier` int(11) NOT NULL,
   `supplier` varchar(255) DEFAULT NULL,
   `history` date DEFAULT NULL
@@ -80,8 +81,9 @@ CREATE TABLE `obat` (
 -- Dumping data for table `obat`
 --
 
-INSERT INTO `obat` (`id_obat`, `nama_obat`, `satuan_obat`, `harga_obat`, `stok`, `id_supplier`, `supplier`, `history`) VALUES
-(30, 'as', 'box', 80000, 37, 2, 'PERDANA', NULL);
+INSERT INTO `obat` (`id_obat`, `nama_obat`, `satuan_obat`, `harga_obat`, `stok`, `stok_akhir`, `id_supplier`, `supplier`, `history`) VALUES
+(42, '1', 'box', 12500, 0, 30, 2, 'PERDANA', '2024-08-08'),
+(43, '2', 'box', 4000, 0, 20, 2, 'PERDANA', '2024-08-08');
 
 -- --------------------------------------------------------
 
@@ -102,8 +104,10 @@ CREATE TABLE `obat_keluar` (
 --
 
 INSERT INTO `obat_keluar` (`id_obat_keluar`, `id_obat`, `nama_obat`, `jumlah_keluar`, `tanggal`) VALUES
-(11, 30, 'as', 10, '2024-08-06'),
-(12, 30, 'as', 3, '2024-08-06');
+(39, 42, '1', 30, '2024-08-08'),
+(40, 42, '1', 20, '2024-08-09'),
+(41, 43, '2', 50, '2024-08-08'),
+(42, 43, '2', 30, '2024-08-09');
 
 -- --------------------------------------------------------
 
@@ -125,8 +129,8 @@ CREATE TABLE `obat_masuk` (
 --
 
 INSERT INTO `obat_masuk` (`id_obat_masuk`, `id_obat`, `nama_obat`, `jumlah_masuk`, `tanggal`, `biaya_pemesanan`) VALUES
-(30, 30, 'as', 20, '2024-08-05', 8000),
-(31, 30, 'as', 30, '2024-08-05', 8000);
+(46, 42, '1', 80, '2024-08-08', 8000),
+(47, 43, '2', 100, '2024-08-08', 8000);
 
 -- --------------------------------------------------------
 
@@ -178,6 +182,27 @@ CREATE TABLE `rop_eoq` (
   `rip` int(11) DEFAULT NULL,
   `eoq` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stok_obat`
+--
+
+CREATE TABLE `stok_obat` (
+  `id_stok_obat` int(11) NOT NULL,
+  `nama` varchar(256) NOT NULL,
+  `satuan` varchar(256) DEFAULT NULL,
+  `stok_awal` int(11) DEFAULT NULL,
+  `stok_akhir` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `stok_obat`
+--
+
+INSERT INTO `stok_obat` (`id_stok_obat`, `nama`, `satuan`, `stok_awal`, `stok_akhir`) VALUES
+(8, 'as', 'BOX', 10, NULL);
 
 -- --------------------------------------------------------
 
@@ -286,6 +311,12 @@ ALTER TABLE `rop_eoq`
   ADD KEY `id_obat` (`id_obat`);
 
 --
+-- Indexes for table `stok_obat`
+--
+ALTER TABLE `stok_obat`
+  ADD PRIMARY KEY (`id_stok_obat`);
+
+--
 -- Indexes for table `suplier`
 --
 ALTER TABLE `suplier`
@@ -318,19 +349,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `obat_keluar`
 --
 ALTER TABLE `obat_keluar`
-  MODIFY `id_obat_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_obat_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `obat_masuk`
 --
 ALTER TABLE `obat_masuk`
-  MODIFY `id_obat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_obat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -345,10 +376,16 @@ ALTER TABLE `rop_eoq`
   MODIFY `id_rop_eoq` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `stok_obat`
+--
+ALTER TABLE `stok_obat`
+  MODIFY `id_stok_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `suplier`
 --
 ALTER TABLE `suplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -47,7 +47,7 @@ class ObatKeluarController extends Controller
             'tanggal' => $request->tanggal, // Pastikan menggunakan nama kolom yang sesuai dengan yang ada di tabel
         ]);
 
-        $obat->stok -= $request->jumlah_keluar;
+        $obat->stok_akhir -= $request->jumlah_keluar;
         $obat->save();
 
         session()->flash('success', 'Data obat keluar berhasil ditambahkan.');

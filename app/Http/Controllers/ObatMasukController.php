@@ -41,7 +41,7 @@ class ObatMasukController extends Controller
 
         ]);
 
-        $obat->stok += $request->jumlah_masuk;
+        $obat->stok_akhir += $request->jumlah_masuk;
         $obat->save();    
 
         return redirect()->route('obat_masuk')->with('success', 'Obat masuk added successfully.');
